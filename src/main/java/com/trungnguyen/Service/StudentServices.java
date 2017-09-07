@@ -1,8 +1,10 @@
 package com.trungnguyen.Service;
 
 import com.trungnguyen.Dao.StudentDAO;
+import com.trungnguyen.Dao.StudentDAOImpl;
 import com.trungnguyen.Entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -16,6 +18,7 @@ public class StudentServices {
     // Tự động liên kết các bean được sử dụng trong các class với các bean được Spring Container sinh ra và quản lý.
     // Không cần khởi tạo đối tượng
     @Autowired
+    @Qualifier("mongoDB")
     private StudentDAO studentDAO;
 
     public Collection<Student> getAllStudents(){
@@ -29,7 +32,11 @@ public class StudentServices {
         this.studentDAO.removeStudentById(id);
     }
 
-    public void updateStudentById(Student student){
-        this.studentDAO.updateStudentById(student);
+    public void updateStudent(Student student){
+        this.studentDAO.updateStudent(student);
+    }
+
+    public void insertStudent(Student student){
+        this.studentDAO.insertStudent(student);
     }
 }

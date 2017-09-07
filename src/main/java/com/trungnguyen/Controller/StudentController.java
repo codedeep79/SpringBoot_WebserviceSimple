@@ -1,11 +1,12 @@
 package com.trungnguyen.Controller;
 
-import com.trungnguyen.Dao.StudentDAO;
 import com.trungnguyen.Entity.Student;
 import com.trungnguyen.Service.StudentServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.Collection;
 
 /**
@@ -36,8 +37,13 @@ public class StudentController {
         this.studentServices.removeStudentById(id);
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public void updateStudentById(@RequestBody Student student){
-        this.studentServices.updateStudentById(student);
+    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateStudent(@RequestBody Student student){
+        this.studentServices.updateStudent(student);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void insertStudent(@RequestBody Student student){
+        this.studentServices.insertStudent(student);
     }
 }
